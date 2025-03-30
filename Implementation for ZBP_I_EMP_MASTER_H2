@@ -1,0 +1,50 @@
+CLASS lhc_ZI_EMP_MASTER_H2 DEFINITION INHERITING FROM cl_abap_behavior_handler.
+  PRIVATE SECTION.
+
+    METHODS get_instance_authorizations FOR INSTANCE AUTHORIZATION
+      IMPORTING keys REQUEST requested_authorizations FOR zi_emp_master_h2 RESULT result.
+
+    METHODS Approved FOR MODIFY
+      IMPORTING keys FOR ACTION zi_emp_master_h2~Approved RESULT result.
+
+    METHODS Reject FOR MODIFY
+      IMPORTING keys FOR ACTION zi_emp_master_h2~Reject RESULT result.
+   " METHODS validate_emp_data FOR VALIDATE ON SAVE
+    "  IMPORTING keys FOR ZI_EMP_MASTER_H2~validate_emp_data.
+
+ENDCLASS.
+
+CLASS lhc_ZI_EMP_MASTER_H2 IMPLEMENTATION.
+
+  METHOD get_instance_authorizations.
+  ENDMETHOD.
+
+  METHOD Approved.
+  MODIFY ENTITIES OF ZI_EMP_MASTER_H2 IN LOCAL MODE
+  ENTITY ZI_EMP_MASTER_H2 UPDATE FIELDS ( Status ) WITH VALUE #( FOR ls_keys in keys ( %tky = ls_keys-%tky
+  Status = 'APROVED' ) ) REPORTED data(ls_emp).
+
+READ ENTITIES OF ZI_EMP_MASTER_H2  IN LOCAL MODE ENTITY ZI_EMP_MASTER_H2
+  ALL FIELDS WITH CORRESPONDING #( keys ) RESULT DATA(lt_result).
+
+  result = VALUE #( for ls_result in lt_result (  %tky = ls_result-%tky
+  %param = ls_result ) ).
+  ENDMETHOD.
+
+  METHOD reject.
+
+  MODIFY ENTITIES OF ZI_EMP_MASTER_H2 IN LOCAL MODE
+  ENTITY ZI_EMP_MASTER_H2 UPDATE FIELDS ( Status ) WITH VALUE #( FOR ls_keys in keys ( %tky = ls_keys-%tky
+  Status = 'REJECTED' ) ) REPORTED data(ls_emp).
+
+
+  READ ENTITIES OF ZI_EMP_MASTER_H2 IN LOCAL MODE ENTITY ZI_EMP_MASTER_H2
+  ALL FIELDS WITH CORRESPONDING #( keys ) RESULT DATA(lt_result).
+
+  result = VALUE #( for ls_result in lt_result (  %tky = ls_result-%tky
+  %param = ls_result ) ).
+
+  ENDMETHOD.
+
+
+ENDCLASS.
