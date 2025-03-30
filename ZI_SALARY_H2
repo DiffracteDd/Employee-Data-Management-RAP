@@ -1,0 +1,28 @@
+@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'INTERFACE VIEW FOR EMP SALARY G02'
+@Metadata.ignorePropagatedAnnotations: true
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
+define view entity ZI_SALARY_H2
+  as select from zemp_salary_h2
+  association to parent ZI_EMP_MASTER_H2 as _emp on  $projection.Empid  = _emp.EmpId
+                                                  and $projection.Deptid = _emp.DeptId
+{
+  key empid        as Empid,
+  key dept_id      as Deptid,
+      salary_month as SalaryMonth,
+      @Semantics.amount.currencyCode : 'currency'
+      basic_pay    as BasicPay,
+      @Semantics.amount.currencyCode : 'currency'
+      allowance    as Allowance,
+      @Semantics.amount.currencyCode : 'currency'
+      deductions   as Deductions,
+      @Semantics.amount.currencyCode : 'currency'
+      net_pay      as NetPay,
+      currency     as Currency,
+      _emp
+}
