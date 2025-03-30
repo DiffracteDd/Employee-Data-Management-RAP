@@ -1,0 +1,22 @@
+@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'INTERFACE VIEW FOR EMP MASTER'
+@Metadata.ignorePropagatedAnnotations: true
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
+define root view entity ZI_EMP_MASTER_H2 as select from zemp_master_h2
+composition[0..*] of ZI_SALARY_H2 as _salary
+association[0..*] to ZI_DEPT_MASTER_H2 as _Dept on _Dept.DeptId = $projection.DeptId
+{
+key emp_id as EmpId,
+key dept_id as DeptId, 
+emp_name as EmpName,
+join_date as JoinDate,
+status as Status,
+('https://685bd85e-501d-43dd-b091-aa6811254f67.abap-web.us10.hana.ondemand.com/sap/bc/adt/businessservices/odatav2/feap/ngfjsV%5DbXsYads%5BfdDF77n%5DsXYdhsaUghYfs%5CF777777ngfjsV%5DbXsYads%5BfdDFsjUb77DDDE/flp.html?sap-ui-xx-viewCache=false&sap-ui-language=EN&sap-client=100#app-preview&/?sap-iapp-state--history=TAS2DL95XMIPSSLXUB19OEUOG38YEVZ4ZHJZBFIOF&sap-iapp-state=TASWH2F63GMEU3775XOOPK9OCA16MVMPIYNOF1J2Q' ) as  URLINV,
+_salary,
+_Dept
+}
