@@ -1,0 +1,63 @@
+@Metadata.layer: #CORE
+@UI: {
+headerInfo: {   typeName: 'Employee Data',
+typeNamePlural: 'Employee Information',
+            title: {
+                        type:#STANDARD,
+                        label: 'Employee Data',
+                        value : 'Empid'},
+            description : {
+                            value : 'Deptid',
+                             label: 'Departmentid'}
+}
+}
+annotate view ZC_EMP_MASTER_H2
+    with 
+{
+@UI.facet: [ { id : 'EmpID',
+    purpose : #STANDARD,
+   type: #IDENTIFICATION_REFERENCE,
+   label : 'Employee Information',
+   position : 10 },
+    { id : 'Salary',
+                type: #LINEITEM_REFERENCE,
+                label : 'Salary Information',
+                targetElement: '_salary',
+                position : 20 },
+                  { id : 'Dept',
+                type: #LINEITEM_REFERENCE,
+                label : 'Department Information',
+                targetElement: '_Dept',
+                position : 30 }
+                ]
+    @UI.lineItem: [{ position : 10 , label :'Empid' }]
+   @UI.identification: [{  position : 10 , label :'Empid' }] 
+    EmpId;
+    @UI : { lineItem: [{ position : 20 , label :'Deptid', type:  #WITH_URL,
+        url : 'URLINV' }],
+   identification: [{  position : 20 , label :'Deptid' }] }
+    DeptId;
+    @UI : { lineItem: [{ position : 30 , label :'EmpName' }],
+   identification: [{  position : 30 , label :'EmpName' }] }
+    EmpName;
+    @UI : { lineItem: [{ position : 40 , label :'JoinDate' }],
+   identification: [{  position : 40 , label :'JoinDate' }] }
+    JoinDate;
+   // @UI : { lineItem: [{ position : 50 , label :'Status' }],
+   @UI.identification: [{  position : 50 , label :'Status' }, { type: #FOR_ACTION,
+                   dataAction: 'Approved' ,
+                   label: 'Approved'}, {type: #FOR_ACTION,
+                   dataAction: 'Reject' ,
+                   label: 'Reject'}] 
+   @UI.lineItem: [{ position: 50 },{ type: #FOR_ACTION,
+                   dataAction: 'Approved' ,
+                   label: 'Approved'}, {type: #FOR_ACTION,
+                   dataAction: 'Reject' ,
+                   label: 'Reject'}]
+  @UI.selectionField: [{ position: 10 }]
+ @Search.defaultSearchElement: true 
+    Status;
+    
+    
+    
+}
