@@ -1,0 +1,6 @@
+@EndUserText.label: 'SERVICE DEFITION for emp master grp2'
+define service ZSRV_EMP_GRP2 {
+  expose ZC_EMP_MASTER_H2;
+  expose ZC_EMP_SALARY_H2;
+  expose ZI_DEPT_MASTER_H2;
+}
