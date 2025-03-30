@@ -1,0 +1,21 @@
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'employee salary data'
+@Metadata.ignorePropagatedAnnotations: true
+@Metadata.allowExtensions: true
+define view entity ZC_EMP_SALARY_H2 as projection on ZI_SALARY_H2
+{
+    key Empid,
+    key Deptid,
+    SalaryMonth,
+    @Semantics.amount.currencyCode: 'Currency'
+    BasicPay,
+    @Semantics.amount.currencyCode: 'Currency'
+    Allowance,
+    @Semantics.amount.currencyCode: 'Currency'
+    Deductions,
+    @Semantics.amount.currencyCode: 'Currency'
+    NetPay,
+    Currency,
+    _emp :redirected to parent ZC_EMP_MASTER_H2
+    
+}
