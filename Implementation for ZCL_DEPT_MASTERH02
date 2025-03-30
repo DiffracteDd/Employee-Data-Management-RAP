@@ -1,0 +1,36 @@
+CLASS zcl_dept_master_h02 DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+  INTERFACES IF_OO_ADT_CLASSRUN.
+  methods Create_Data.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_dept_master_h02 IMPLEMENTATION.
+METHOD if_oo_adt_classrun~main.
+Create_Data( ).
+if sy-subrc = 0.
+out->write( 'Successful' ).
+endif.
+ENDMETHOD.
+METHOD Create_Data.
+data lt_emp type STANDARD TABLE OF ZDEPT_MASTER_H02.
+    lt_emp = VALUE #(
+    (
+    dept_id = 'D010'
+    dept_name = 'PLM'
+
+
+    )
+
+    ).
+
+    insert ZDEPT_MASTER_H02 from table @lt_emp.
+    ENDMETHOD.
+ENDCLASS.
