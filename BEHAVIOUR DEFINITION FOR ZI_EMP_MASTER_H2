@@ -1,0 +1,55 @@
+managed implementation in class zbp_i_emp_master_h2 unique;
+strict ( 2 );
+
+define behavior for ZI_EMP_MASTER_H2 //alias <alias_name>
+persistent table zemp_master_h2
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory :create, readonly : update ) EmpId, DeptId;
+  action Approved result[1] $self;
+  action Reject result[1] $self;
+
+
+ mapping for zemp_master_h2 {
+ EmpId=emp_id;
+ DeptId = dept_id;
+ EmpName = emp_name;
+ JoinDate = join_date;
+ Status = status;
+
+ }
+
+  association _salary { create; }
+}
+
+define behavior for ZI_SALARY_H2 //alias <alias_name>
+implementation in class zbp_i_emp_salary_h2 unique
+persistent table zemp_salary_h2
+lock dependent by _emp
+authorization dependent by _emp
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly : update ) Empid, Deptid;
+  field ( readonly ) NetPay,Allowance,Deductions;
+  determination setallowance on save { field BasicPay ; create; }
+  action Reject result[1] $self;
+  mapping for zemp_salary_h2{
+  Empid = empid;
+  Deptid = dept_id;
+  SalaryMonth = salary_month;
+  Allowance = allowance;
+  BasicPay = basic_pay;
+  Deductions = deductions;
+  NetPay = net_pay;
+  Currency = currency;
+  }
+  association _emp;
+}
