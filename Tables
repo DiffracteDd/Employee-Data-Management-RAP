@@ -1,0 +1,73 @@
+EMP MASTER TABLE 
+
+@EndUserText.label : 'Employee Master Table'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zemp_master_h2 {
+
+  key client  : abap.clnt not null;
+  key emp_id  : zemp_id_g02 not null;
+  @AbapCatalog.foreignKey.screenCheck : false
+  key dept_id : zdept_id_g02 not null
+    with foreign key zdept_master_g2
+      where dept_id = zemp_master_h2.dept_id;
+  emp_name    : abap.char(50);
+  join_date   : abap.dats;
+  status      : abap.char(10);
+
+}
+.
+.
+.
+
+EMP SALARY TABLE 
+
+@EndUserText.label : 'Maintain salary details of employees'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zemp_salary_h2 {
+
+  key client   : abap.clnt not null;
+  @AbapCatalog.foreignKey.screenCheck : false
+  key empid    : zemp_id_g02 not null
+    with foreign key zemp_master_g2
+      where emp_id = zemp_salary_h2.empid;
+  @AbapCatalog.foreignKey.screenCheck : false
+  key dept_id  : zdept_id_g02 not null
+    with foreign key zdept_master_g2
+      where dept_id = zemp_salary_h2.dept_id;
+  salary_month : abap.dats;
+  @Semantics.amount.currencyCode : 'zemp_salary_g2.currency'
+  basic_pay    : abap.curr(15,2);
+  @Semantics.amount.currencyCode : 'zemp_salary_g2.currency'
+  allowance    : abap.curr(15,2);
+  @Semantics.amount.currencyCode : 'zemp_salary_g2.currency'
+  deductions   : abap.curr(15,2);
+  @Semantics.amount.currencyCode : 'zemp_salary_g2.currency'
+  net_pay      : abap.curr(15,2);
+  currency     : abap.cuky;
+
+}
+.
+.
+.
+
+EMP DEPARTMENT TABLE 
+
+@EndUserText.label : 'DEPARTMENT MASTER TABLE'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zdept_master_h02 {
+
+  key client  : abap.clnt not null;
+  key dept_id : zdept_id_g02 not null;
+  dept_name   : abap.char(20);
+
+}
+
