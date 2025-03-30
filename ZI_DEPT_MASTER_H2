@@ -1,0 +1,16 @@
+@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'INTERFACE VIEW FOR DEPARTMENT'
+@Metadata.ignorePropagatedAnnotations: true
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
+define view entity ZI_DEPT_MASTER_H2 as select from zdept_master_h02
+{
+@UI.lineItem: [{ position: 10 }]
+    key dept_id as DeptId,
+    @UI.lineItem: [{ position: 20 }]
+    dept_name as DeptName
+}
