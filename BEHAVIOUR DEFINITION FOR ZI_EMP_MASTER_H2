@@ -11,7 +11,8 @@ authorization master ( instance )
   update;
   delete;
 
-  field ( mandatory :create, readonly : update ) EmpId, DeptId;
+  field ( mandatory :create, readonly : update ) EmpId, DeptId,EmpName;
+  validation validateEmployee on save { field EmpId,DeptId,EmpName; }
   action Approved result[1] $self;
   action Reject result[1] $self;
 
@@ -37,7 +38,7 @@ authorization dependent by _emp
 {
   update;
   delete;
-  field ( readonly : update ) Empid, Deptid;
+  field ( readonly ) Empid, Deptid;
   field ( readonly ) NetPay,Allowance,Deductions;
   determination setallowance on save { field BasicPay ; create; }
   action Reject result[1] $self;
