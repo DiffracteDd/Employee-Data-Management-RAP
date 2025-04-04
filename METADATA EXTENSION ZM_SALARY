@@ -22,28 +22,36 @@ annotate view ZC_EMP_SALARY_H2 with
 
   @UI : { lineItem: [{ position : 10 }],
    identification: [{  position : 10 , label :'Empid' }] }
+   @Search.defaultSearchElement: true
   Empid;
   @UI : { lineItem: [{ position : 20  }],
   identification: [{  position : 20 , label :'Deptid' }] }
+  @Search.defaultSearchElement: true
   Deptid;
   @UI : { lineItem: [{ position : 30  }],
   identification: [{  position : 30 , label :'SalaryMonth' }] }
+  @Search.defaultSearchElement: true
   SalaryMonth;
   @UI : { lineItem: [{ position : 40  }],
   identification: [{  position : 40 , label :'BasicPay' }] }
+  @Search.defaultSearchElement: true
   BasicPay;
 
   @UI : { lineItem: [{ position : 50}],
   identification: [{  position : 50 , label :'Allowance' }] }
+  @Search.defaultSearchElement: true
   Allowance;
   @UI : { lineItem: [{ position : 60  }],
   identification: [{  position : 60 , label :'Deductions' }] }
+  @Search.defaultSearchElement: true
   Deductions;
   @UI : { lineItem: [{ position : 70  }],
    identification: [{  position : 70 , label :'NetPay' }] }
+   @Search.defaultSearchElement: true
   NetPay;
   @UI : { lineItem: [{ position : 80  }],
   identification: [{  position : 80 , label :'Currency' }] }
+  @Search.defaultSearchElement: true
   Currency;
 
 }
