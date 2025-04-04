@@ -26,3 +26,6 @@ define view entity ZI_SALARY_H2
       currency     as Currency,
       _emp
 }
+
+
+
