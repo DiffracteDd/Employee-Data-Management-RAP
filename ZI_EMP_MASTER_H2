@@ -12,6 +12,8 @@ composition[0..*] of ZI_SALARY_H2 as _salary
 association[0..*] to ZI_DEPT_MASTER_H2 as _Dept on _Dept.DeptId = $projection.DeptId
 {
 key emp_id as EmpId,
+ //@ObjectModel.foreignKey.association: '_Dept'  // Links DeptId to Dept entity
+ //@ObjectModel.text.association: '_Dept'  // Enables DeptName display in the drop-down
 key dept_id as DeptId, 
 emp_name as EmpName,
 join_date as JoinDate,
