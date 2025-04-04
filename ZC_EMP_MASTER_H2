@@ -7,6 +7,7 @@ provider contract transactional_query
 as projection on ZI_EMP_MASTER_H2
 {
     key EmpId,
+    @Consumption.valueHelpDefinition: [{ entity:{name: 'ZC_DEPT_VALUE_HELP',element:'DeptId'} }]
     key DeptId,
     EmpName,
     JoinDate,
@@ -15,6 +16,9 @@ as projection on ZI_EMP_MASTER_H2
     _Dept,
     /* Associations */
     _salary:  redirected to composition child ZC_EMP_SALARY_H2
+
+  
+    
     
     
 }
