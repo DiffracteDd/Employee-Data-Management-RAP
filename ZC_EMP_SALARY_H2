@@ -19,3 +19,4 @@ define view entity ZC_EMP_SALARY_H2 as projection on ZI_SALARY_H2
     _emp :redirected to parent ZC_EMP_MASTER_H2
     
 }
+
