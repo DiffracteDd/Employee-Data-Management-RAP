@@ -32,16 +32,20 @@ annotate view ZC_EMP_MASTER_H2
                 ]
     @UI.lineItem: [{ position : 10 , label :'Empid' }]
    @UI.identification: [{  position : 10 , label :'Empid' }] 
+   @Search.defaultSearchElement: true
     EmpId;
     @UI : { lineItem: [{ position : 20 , label :'Deptid', type:  #WITH_URL,
         url : 'URLINV' }],
    identification: [{  position : 20 , label :'Deptid' }] }
+   @Search.defaultSearchElement: true
     DeptId;
     @UI : { lineItem: [{ position : 30 , label :'EmpName' }],
    identification: [{  position : 30 , label :'EmpName' }] }
+   @Search.defaultSearchElement: true
     EmpName;
     @UI : { lineItem: [{ position : 40 , label :'JoinDate' }],
    identification: [{  position : 40 , label :'JoinDate' }] }
+   @Search.defaultSearchElement: true
     JoinDate;
    // @UI : { lineItem: [{ position : 50 , label :'Status' }],
    @UI.identification: [{  position : 50 , label :'Status' }, { type: #FOR_ACTION,
